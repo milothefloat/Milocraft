@@ -1,0 +1,23 @@
+package milocraft.main;
+
+import net.minecraftforge.fml.common.Mod.*;
+import net.minecraftforge.fml.common.event.*;
+
+public class Main {
+	
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		
+	}
+	
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+		
+	}
+	
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+		
+	}
+	
+}

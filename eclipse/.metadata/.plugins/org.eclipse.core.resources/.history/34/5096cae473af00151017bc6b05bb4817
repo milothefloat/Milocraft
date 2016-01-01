@@ -1,0 +1,25 @@
+package milocraft.main.init;
+
+import net.minecraft.item.*;
+import net.minecraftforge.fml.common.registry.*;
+
+public class Items {
+
+	public static Item test_item;
+
+	public static void init() {
+		test_item = new Item().setUnlocalizedName("test_item");
+	}
+
+	public static void register() {
+		GameRegistry.registerItem(test_item, "Test Item");
+	}
+
+	public static void registerRenders() {
+
+	}
+	
+	public static void registerRender (Item item) {
+		
+	}
+}

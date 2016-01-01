@@ -1,0 +1,14 @@
+package milocraft.main.init;
+
+public class Blocks {
+	
+	public static Block test_block;
+	
+	public static void init () {
+		
+	}
+	
+	public static void register() {
+		
+	}
+}

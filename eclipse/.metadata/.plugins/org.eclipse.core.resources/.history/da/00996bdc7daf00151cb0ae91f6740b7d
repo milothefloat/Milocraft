@@ -1,0 +1,9 @@
+package milocraft.main.items;
+
+import net.minecraft.item.*;
+
+public class ItemTeleportMark extends Item{
+	
+	
+
+}

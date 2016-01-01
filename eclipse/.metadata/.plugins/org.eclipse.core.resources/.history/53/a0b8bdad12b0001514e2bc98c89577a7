@@ -1,0 +1,12 @@
+package milocraft.main.init;
+
+import net.minecraftforge.fml.common.eventhandler.*;
+
+public class MilocraftHandler {
+
+	@SubscribeEvent
+	public void onLivingUpdate() {
+		
+	}
+
+}

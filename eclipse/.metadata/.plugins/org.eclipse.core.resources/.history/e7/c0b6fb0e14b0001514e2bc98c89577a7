@@ -1,0 +1,18 @@
+package milocraft.main.init;
+
+import net.minecraft.entity.player.*;
+import net.minecraftforge.event.entity.living.LivingEvent.*;
+import net.minecraftforge.fml.common.eventhandler.*;
+import net.minecraftforge.fml.common.gameevent.*;
+
+public class MilocraftHandler {
+
+	@SubscribeEvent
+	public void onLivingUpdateEvent(LivingUpdateEvent event)
+	{
+		if (event.entity instanceof EntityPlayerMP) {
+			
+		}
+	}
+
+}

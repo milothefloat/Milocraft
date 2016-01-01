@@ -1,0 +1,7 @@
+item.test_item.name=Test Item
+item.teleport_mark.name=Teleport Mark
+item.lightning_stick.name=Lightning Stick
+
+tile.test_block.name=Test Block
+
+itemGroup.tabMisc=Misc

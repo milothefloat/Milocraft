@@ -1,0 +1,7 @@
+package milocraft.main.tabs;
+
+import net.minecraft.creativetab.*;
+
+public class MiscTab extends CreativeTabs{
+
+}

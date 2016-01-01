@@ -1,0 +1,47 @@
+package milocraft.main.items;
+
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.world.*;
+
+public class ItemLightningStick extends Item {
+
+	private final int coolDownTime = 1000;
+	private long lastTime = 0;
+	// Distance units in blocks/meters
+	private static int range = 5;
+
+	public ItemLightningStick() {
+
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+		makeItRain(stack, world, player);
+		return stack;
+	}
+
+	private void makeItRain(ItemStack stack, World world, EntityPlayer player) {
+		if (System.currentTimeMillis() > lastTime) {
+			for (int i = 0; i < world.getLoadedEntityList().size(); i++) {
+				if (!(world.getLoadedEntityList().get(i) instanceof EntityPlayer)
+						&& world.getLoadedEntityList().get(i) instanceof EntityLiving) {
+
+					EntityLiving e = (EntityLiving) world.getLoadedEntityList().get(i);
+					if (player.getDistanceToEntity(e) < range) {
+						if (world.isRemote)
+							world.addWeatherEffect(new EntityLightningBolt(world, e.posX, e.posY + 1, e.posZ));
+						else {
+							e.setDead();
+							lastTime = System.currentTimeMillis() + coolDownTime;
+						}
+					}
+				}
+			}
+		}
+
+	}
+
+}

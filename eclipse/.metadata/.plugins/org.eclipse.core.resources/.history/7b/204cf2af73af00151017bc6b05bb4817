@@ -1,0 +1,20 @@
+package milocraft.main.init;
+
+import net.minecraft.item.*;
+
+public class Items {
+
+	public static Item test_item;
+
+	public static void init() {
+		test_item = new Item().setUnlocalizedName("test_item");
+	}
+
+	public static void register() {
+
+	}
+
+	public static void registerRenders() {
+
+	}
+}

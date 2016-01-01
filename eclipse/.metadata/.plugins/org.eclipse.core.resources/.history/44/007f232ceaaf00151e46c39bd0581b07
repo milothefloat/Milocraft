@@ -1,0 +1,12 @@
+package milocraft.main.blocks;
+
+import net.minecraft.block.*;
+import net.minecraft.block.material.*;
+
+public class BlockTest extends Block {
+
+	public BlockTest(Material materialIn) {
+		super(materialIn);
+	}
+
+}

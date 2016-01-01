@@ -1,0 +1,30 @@
+package milocraft.main;
+
+import milocraft.main.init.*;
+import milocraft.main.proxy.*;
+import net.minecraftforge.fml.common.*;
+import net.minecraftforge.fml.common.Mod.*;
+import net.minecraftforge.fml.common.event.*;
+
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
+public class Main {
+	
+	public static CommonProxy proxy;
+	
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		Items.init();
+		Items.register();
+	}
+	
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+		
+	}
+	
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+		
+	}
+	
+}

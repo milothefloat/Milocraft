@@ -1,0 +1,46 @@
+package milocraft.main.blocks;
+
+import net.minecraft.block.*;
+import net.minecraft.block.material.*;
+import net.minecraft.block.state.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.init.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+
+public class BlockTest extends Block {
+
+	public BlockTest(Material materialIn) {
+		super(materialIn);
+	}
+
+	@Override
+	public boolean isFullCube() {
+		return false;
+	}
+
+	@Override
+	public boolean isOpaqueCube() {
+		return false;
+	}
+
+	@Override
+	public EnumWorldBlockLayer getBlockLayer() {
+		return EnumWorldBlockLayer.CUTOUT;
+	}
+	
+	@Override
+	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, Entity entityIn) {
+		super.onEntityCollidedWithBlock(worldIn, pos, entityIn);
+		
+	}
+	
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+			EnumFacing side, float hitX, float hitY, float hitZ) {
+		
+		return super.onBlockActivated(worldIn, pos, state, playerIn, side, hitX, hitY, hitZ);
+	}
+
+}

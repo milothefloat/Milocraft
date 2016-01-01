@@ -1,0 +1,19 @@
+package milocraft.main.tabs;
+
+import milocraft.main.init.*;
+import net.minecraft.creativetab.*;
+import net.minecraft.item.*;
+
+public class MiscTab extends CreativeTabs {
+
+	public MiscTab(String label) {
+		super(label);
+		this.setBackgroundImageName("tab_misc.png");
+	}
+
+	@Override
+	public Item getTabIconItem() {
+		return Item.getItemFromBlock(Blocks.test_block);
+	}
+
+}

@@ -1,0 +1,44 @@
+package milocraft.main;
+
+import milocraft.main.init.*;
+import milocraft.main.proxy.*;
+import milocraft.main.tabs.*;
+import net.minecraftforge.common.*;
+import net.minecraftforge.fml.common.*;
+import net.minecraftforge.fml.common.Mod.*;
+import net.minecraftforge.fml.common.event.*;
+
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
+public class Milocraft {
+
+	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
+	public static CommonProxy proxy;
+
+	public static final MiscTab tabMisc = new MiscTab("tabMisc");
+
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		Blocks.init();
+		Blocks.register();
+		Items.init();
+		Items.register();
+		setSettings();
+	}
+
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+		proxy.registerRenders();
+	}
+
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+		MilocraftHandler handler = new MilocraftHandler();
+		
+		MinecraftForge.EVENT_BUS.register(new MilocraftHandler());
+	}
+
+	private void setSettings() {
+		net.minecraft.init.Blocks.bedrock.setHardness(0);
+	}
+
+}

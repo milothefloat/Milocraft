@@ -1,0 +1,13 @@
+package milocraft.main.init;
+
+import net.minecraftforge.fml.common.eventhandler.*;
+import net.minecraftforge.fml.common.gameevent.*;
+
+public class MilocraftHandler {
+
+	@SubscribeEvent
+	public void onLivingUpdate(PlayerEvent event) {
+		event.player.motionY++;
+	}
+
+}

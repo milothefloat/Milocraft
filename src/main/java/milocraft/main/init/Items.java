@@ -1,0 +1,39 @@
+package milocraft.main.init;
+
+import milocraft.main.*;
+import milocraft.main.items.*;
+import net.minecraft.client.*;
+import net.minecraft.client.resources.model.*;
+import net.minecraft.item.*;
+import net.minecraftforge.fml.common.registry.*;
+
+public class Items {
+
+	public static Item test_item;
+	public static Item teleport_mark;
+	public static Item lightning_stick;
+
+	public static void init() {
+		test_item = new Item().setUnlocalizedName("test_item").setCreativeTab(Milocraft.tabMisc);
+		teleport_mark = new ItemTeleportMark().setUnlocalizedName("teleport_mark").setCreativeTab(Milocraft.tabMisc);
+		lightning_stick = new ItemLightningStick().setUnlocalizedName("lightning_stick")
+				.setCreativeTab(Milocraft.tabMisc);
+	}
+
+	public static void register() {
+		GameRegistry.registerItem(test_item, test_item.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(teleport_mark, teleport_mark.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(lightning_stick, lightning_stick.getUnlocalizedName().substring(5));
+	}
+
+	public static void registerRenders() {
+		registerRender(teleport_mark);
+		registerRender(test_item);
+		registerRender(lightning_stick);
+	}
+
+	public static void registerRender(Item item) {
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(
+				Reference.MOD_ID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
+	}
+}

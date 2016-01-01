@@ -1,0 +1,13 @@
+package milocraft.main.tabs;
+
+import net.minecraft.creativetab.*;
+import net.minecraft.item.*;
+
+public class MiscTab extends CreativeTabs{
+
+	@Override
+	public Item getTabIconItem() {
+		return null;
+	}
+
+}

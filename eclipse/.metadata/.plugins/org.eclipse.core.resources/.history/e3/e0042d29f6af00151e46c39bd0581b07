@@ -1,0 +1,6 @@
+item.test_item.name=Test Item
+item.teleport_mark.name=Teleport Mark
+
+tile.test_block.name=Test Block
+
+itemGroup.tabMisc=Misc

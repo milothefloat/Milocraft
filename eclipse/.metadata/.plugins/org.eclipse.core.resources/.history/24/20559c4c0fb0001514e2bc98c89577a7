@@ -1,0 +1,112 @@
+package milocraft.main.items;
+
+import java.io.*;
+
+import net.minecraft.block.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.init.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+
+public class ItemLightningStick extends Item {
+
+	private final int coolDownTime = 1000;
+	private long lastTime = 0;
+	// Distance units in blocks/meters
+	private static int range = 5;
+
+	public ItemLightningStick() {
+
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+		makeItRain(stack, world, player);
+		return stack;
+	}
+
+	private void makeItRain(ItemStack stack, World world, EntityPlayer player) {
+		if (System.currentTimeMillis() > lastTime) {
+			for (int i = 0; i < world.getLoadedEntityList().size(); i++) {
+				if (!(world.getLoadedEntityList().get(i) instanceof EntityPlayer)
+						&& world.getLoadedEntityList().get(i) instanceof EntityLiving) {
+
+					EntityLiving e = (EntityLiving) world.getLoadedEntityList().get(i);
+					if (player.getDistanceToEntity(e) < range) {
+						if (world.isRemote)
+							world.addWeatherEffect(new EntityLightningBolt(world, e.posX, e.posY + 1, e.posZ));
+						else {
+							e.setDead();
+							lastTime = System.currentTimeMillis() + coolDownTime;
+						}
+					}
+				}
+			}
+		}
+
+	}
+	
+	private void waterWalk (EntityPlayer playerMP) {
+     
+            //NarutoMod.logger.info(playerMP.getYOffset());
+            int i = (int) Math.round(playerMP.posY - playerMP.getYOffset() - 0.96f);
+            Block j = playerMP.worldObj.getBlockState(new BlockPos(playerMP.posX, i, playerMP.posZ)).getBlock();
+
+            int c = (int) Math.round(playerMP.posY - playerMP.getYOffset() - 0.4f);
+            Block k = playerMP.worldObj.getBlockState(new BlockPos((int) playerMP.posX, c, (int) playerMP.posZ)).getBlock();
+
+            int h = (int) Math.round(playerMP.posY - playerMP.getYOffset() - 0.87f);
+            Block n = playerMP.worldObj.getBlockState(new BlockPos (playerMP.posX, h, playerMP.posZ)).getBlock();
+
+            boolean onWater;
+
+            onWater = false;
+
+            if (k == Blocks.water || k == Blocks.flowing_water) {
+                playerMP.motionY += 0.2D;
+                if (playerMP.motionY > 0.6D) {
+                    playerMP.motionY = 0.6D;
+                }
+            }
+            else if (n == Blocks.water || n == Blocks.flowing_water) {
+                playerMP.motionY += 0.1D;
+                if (playerMP.motionY > 0.2D) {
+                    playerMP.motionY = 0.2D;
+                }
+            } else if ((j == Blocks.water || j == Blocks.flowing_water) && playerMP.motionY < 0.0D) {
+                //this.chakra -= 0.12F;
+                playerMP.motionY = 0.0D;
+                playerMP.onGround = true;
+
+                onWater = true;
+
+                if (playerMP.fallDistance > 4F) {
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+                    DataOutputStream outputStream = new DataOutputStream(bos);
+                    try {
+                        outputStream.writeInt(4);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+
+            double possibility = Math.random();
+            if (possibility >= 0.2F) {
+                if(playerMP.isPotionActive(NarutoEffects.chakraRestore)){
+                    ParticleEffects.addEffect(2, playerMP);
+                }
+                else{
+                    ParticleEffects.addPlayersColouredSmoke(playerMP);
+                }
+            }
+        } else {
+            this.waterWalking = false;
+            playerMP.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "You do not have enough chakra so Water Walking was disabled!"));
+        
+	}
+
+}

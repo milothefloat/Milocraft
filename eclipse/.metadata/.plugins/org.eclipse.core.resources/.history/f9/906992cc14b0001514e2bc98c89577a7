@@ -1,0 +1,66 @@
+package milocraft.main.init;
+
+import java.io.*;
+
+import net.minecraft.block.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.*;
+import net.minecraftforge.event.entity.living.LivingEvent.*;
+import net.minecraftforge.fml.common.eventhandler.*;
+import net.minecraftforge.fml.common.gameevent.*;
+
+public class MilocraftHandler {
+
+	@SubscribeEvent
+	public void onLivingUpdateEvent(LivingUpdateEvent event) {
+		if (event.entity instanceof EntityPlayerMP) {
+			EntityPlayerMP playerMP = (EntityPlayerMP) event.entity;
+			waterWalk(playerMP);
+		}
+	}
+
+	private void waterWalk(EntityPlayerMP playerMP) {
+
+		int i = (int) Math.round(playerMP.posY - playerMP.getYOffset() - 0.96f);
+		Block j = playerMP.worldObj.getBlockState(new BlockPos(playerMP.posX, i, playerMP.posZ)).getBlock();
+
+		int c = (int) Math.round(playerMP.posY - playerMP.getYOffset() - 0.4f);
+		Block k = playerMP.worldObj.getBlockState(new BlockPos((int) playerMP.posX, c, (int) playerMP.posZ)).getBlock();
+
+		int h = (int) Math.round(playerMP.posY - playerMP.getYOffset() - 0.87f);
+		Block n = playerMP.worldObj.getBlockState(new BlockPos(playerMP.posX, h, playerMP.posZ)).getBlock();
+
+		boolean onWater;
+
+		onWater = false;
+
+		if (k == Blocks.water || k == Blocks.flowing_water) {
+			playerMP.motionY += 0.2D;
+			if (playerMP.motionY > 0.6D) {
+				playerMP.motionY = 0.6D;
+			}
+		} else if (n == Blocks.water || n == Blocks.flowing_water) {
+			playerMP.motionY += 0.1D;
+			if (playerMP.motionY > 0.2D) {
+				playerMP.motionY = 0.2D;
+			}
+		} else if ((j == Blocks.water || j == Blocks.flowing_water) && playerMP.motionY < 0.0D) {
+			playerMP.motionY = 0.0D;
+			playerMP.onGround = true;
+
+			onWater = true;
+
+			if (playerMP.fallDistance > 4F) {
+				ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+				DataOutputStream outputStream = new DataOutputStream(bos);
+				try {
+					outputStream.writeInt(4);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+	}
+
+}

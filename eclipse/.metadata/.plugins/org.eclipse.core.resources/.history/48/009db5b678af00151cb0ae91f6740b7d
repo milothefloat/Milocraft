@@ -1,0 +1,17 @@
+package milocraft.main.init;
+
+import milocraft.main.blocks.*;
+import net.minecraft.block.*;
+
+public class Blocks {
+	
+	public static Block test_block;
+	
+	public static void init () {
+		test_block = new BlockTest.setUnlocalizedName("test_block");
+	}
+	
+	public static void register() {
+		
+	}
+}

@@ -1,0 +1,33 @@
+package milocraft.main.init;
+
+import milocraft.main.*;
+import milocraft.main.blocks.*;
+import net.minecraft.block.*;
+import net.minecraft.block.material.*;
+import net.minecraft.client.*;
+import net.minecraft.client.resources.model.*;
+import net.minecraft.item.*;
+import net.minecraftforge.fml.common.registry.*;
+
+public class Blocks {
+
+	public static Block test_block;
+
+	public static void init() {
+		test_block = new BlockTest(Material.rock).setUnlocalizedName("test_block").setCreativeTab(Milocraft.tabMisc);
+	}
+
+	public static void register() {
+		GameRegistry.registerBlock(test_block, test_block.getUnlocalizedName().substring(5));
+	}
+
+	public static void registerRenders() {
+		registerRender(test_block);
+	}
+
+	public static void registerRender(Block block) {
+		Item item = Item.getItemFromBlock(block);
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(
+				Reference.MOD_ID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
+	}
+}

@@ -1,0 +1,23 @@
+package milocraft.main.blocks;
+
+import net.minecraft.block.*;
+import net.minecraft.block.material.*;
+import net.minecraft.init.*;
+
+public class BlockTest extends Block {
+
+	public BlockTest(Material materialIn) {
+		super(materialIn);
+	}
+	
+	@Override
+	public boolean isFullBlock() {
+		return false;
+	}
+	
+	@Override
+	public boolean isOpaqueCube() {
+		return true;
+	}
+
+}

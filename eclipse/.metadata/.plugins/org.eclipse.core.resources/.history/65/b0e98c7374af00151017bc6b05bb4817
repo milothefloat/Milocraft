@@ -1,0 +1,5 @@
+package milocraft.main.proxy;
+
+public class ClientProxy {
+
+}

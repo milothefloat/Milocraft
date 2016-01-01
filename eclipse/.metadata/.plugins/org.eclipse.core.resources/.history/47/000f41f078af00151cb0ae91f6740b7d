@@ -1,0 +1,28 @@
+package milocraft.main.init;
+
+import milocraft.main.blocks.*;
+import net.minecraft.block.*;
+import net.minecraft.block.material.*;
+import net.minecraft.item.*;
+import net.minecraftforge.fml.common.registry.*;
+
+public class Blocks {
+	
+	public static Block test_block;
+	
+	public static void init () {
+		test_block = new BlockTest(Material.rock).setUnlocalizedName("test_block");
+	}
+	
+	public static void register() {
+		GameRegistry.registerBlock(test_block, test_block.getUnlocalizedName().substring(5));
+	}
+	
+	public static void registerRenders() {
+		
+	}
+	
+	public static void registerRender (Block block) {
+		Item item = Item.getItemFromBlock(block);
+	}
+}

@@ -1,0 +1,42 @@
+package milocraft.main.items;
+
+import java.util.*;
+
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import net.minecraftforge.fml.relauncher.*;
+
+public class ItemTeleportMark extends Item {
+
+	@Override
+	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side,
+			float hitX, float hitY, float hitZ) {
+		if (!playerIn.isSneaking()) {
+			if (stack.getTagCompound() == null) {
+				stack.setTagCompound(new NBTTagCompound());
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn) {
+		return itemStackIn;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
+
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack) {
+		return stack.isItemEnchanted();
+	}
+
+}

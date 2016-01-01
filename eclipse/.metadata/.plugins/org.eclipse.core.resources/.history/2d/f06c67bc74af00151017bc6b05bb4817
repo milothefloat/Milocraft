@@ -1,0 +1,7 @@
+package milocraft.main;
+
+public class Reference {
+	public static final String MOD_ID = "mcmc";
+	public static final String MOD_NAME = "Milocraft";
+	public static final String VERSION = "1.0";
+}

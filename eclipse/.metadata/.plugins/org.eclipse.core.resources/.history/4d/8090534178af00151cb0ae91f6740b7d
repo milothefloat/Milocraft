@@ -1,0 +1,16 @@
+package milocraft.main.init;
+
+import net.minecraft.block.*;
+
+public class Blocks {
+	
+	public static Block test_block;
+	
+	public static void init () {
+		
+	}
+	
+	public static void register() {
+		
+	}
+}
